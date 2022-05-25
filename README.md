@@ -151,16 +151,16 @@ print(X_train.shape, y_train.shape, X_test.shape, y_test.shape)
 ### Oversampling
 #### 정상인과 고혈압 환자의 class 비율이 불균형하여, 이는 질병 예측에 있어 모델이 대부분 정상인으로 판별할 가능성이 있어 Oversampling을 수행
 ```python
-print("counts of label '1': {}".format(sum(y_train==1))) \
+print("counts of label '1': {}".format(sum(y_train==1)))
 print("counts of label '0': {}".format(sum(y_train==0)))
 ```
-counts of label '1': 27
+counts of label '1': 27\
 counts of label '0': 513
 ```python
-print("counts of label '1': {}".format(sum(y_test==1))) \
+print("counts of label '1': {}".format(sum(y_test==1)))
 print("counts of label '0': {}".format(sum(y_test==0)))
 ```
-counts of label '1': 10
+counts of label '1': 10\
 counts of label '0': 171
 ```python
 from sklearn.datasets import make_classification
@@ -174,13 +174,13 @@ X_resampled, y_resampled = sm.fit_resample(X_train,y_train)
 print('After OverSampling, the shape of train_X: {}'.format(X_resampled.shape))
 print('After OverSampling, the shape of train_y: {} \n'.format(y_resampled.shape))
 ```
-After OverSampling, the shape of train_X: (939, 27) \
+After OverSampling, the shape of train_X: (939, 27)\
 After OverSampling, the shape of train_y: (939,) 
 ```python
 print("After OverSampling, counts of label '1': {}".format(sum(y_resampled==1))) 
 print("After OverSampling, counts of label '0': {}".format(sum(y_resampled==0)))
 ```
-After OverSampling, counts of label '1': 313 \
+After OverSampling, counts of label '1': 313\
 After OverSampling, counts of label '0': 626
 ```python
 X_train, X_val, y_train, y_val = train_test_split(X_resampled, y_resampled, test_size=0.2, stratify=y_resampled, random_state=1)
