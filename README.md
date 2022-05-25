@@ -253,11 +253,20 @@ print(classification_report(y_test, y_test_hat))
 ```
 ![image](https://user-images.githubusercontent.com/105834310/170264455-53484905-01c8-4412-a6c2-ee78111bfba7.png)
 ```python
-from sklearn import tree
-import matplotlib.pyplot as plt
-tree.plot_tree(clf1)
+import graphviz
+
+dot_data = tree.export_graphviz(clf, out_file=None,
+                                feature_names=['T00_SEX', 'T01_AGE', 'T01_DRINK', 'T01_DRDU', 'T01_SMOKE', 'T01_SMDU', 'T01_EXER', 'T01_FMFHT', 'T01_FMMHT',
+                                               'T01_FMFDM', 'T01_FMMDM', 'T01_HEIGHT', 'T01_WEIGHT', 'T01_WAIST', 'T01_HIP', 'T01_PULSE', 'T01_SBP', 'T01_DBP',
+                                               'T01_HBA1C', 'T01_GLU0', 'T01_CREATININE', 'T01_AST', 'T01_ALT', 'T01_TCHL', 'T01_HDL', 'T01_TG', 'T01_INS0'],  
+                                class_names= 'T02_HTN',
+                                filled=True)
+
+# Draw graph
+graph = graphviz.Source(dot_data, format="png") 
+graph
 ```
-![image](https://user-images.githubusercontent.com/105834310/170264662-7c7abbf6-64ab-46f4-b773-7b67a93b9c85.png)
+![image](https://user-images.githubusercontent.com/105834310/170284422-5ce14801-867f-4012-9d0c-69f8fc3826fe.png)
 ```python
 f_i=pd.Series(clf.feature_importances_, index=X_train.columns)
 f_i.sort_values(ascending=False)
@@ -436,6 +445,33 @@ print(classification_report(y_test, y_pred))
 ```
 ![image](https://user-images.githubusercontent.com/105834310/170260747-4544ae12-9fdb-49ca-b3f7-58f5b84a115f.png)
 ### 결과 & 기대효과
+결과\
+Decision Tree, Random Forest, KNN, SVM 총 4개의 모델을 통해 생활습관과 인체유래물 정보를 바탕으로 향후 고혈압이 발생하는 환자를 예측해 보았다.
+질병 예측 분야에서는 예측모델에 있어 환자인데 환자로 판별해야 하는 것이 매우 중요하므로 recall(재현율)을 중요하게 바라본다
+따라서 4개의 모델 중 고혈압 환자 recall 값이 가장 높은 Decision Tree를 최종 모델로 선정하여 추가적으로 해석하였다
+
+decision tree 결과 분석\
+
+고혈압을 결정짓는 가장 영향력 있는 변수 SBP(수축기 혈압)과, PULSE(맥박)이다
+
+1. 젊었을 때 말랑말랑하던 혈관은 점차 탄력을 잃고 딱딱해진다.\
+쉽게 넓어지거나 좁아지지는 않는다. 혈액량이 늘어났음에도 혈관이 적절히 넓어지지 않기 때문에 혈관벽에 가해지는 압력이 높아지고 이 때문에 수축기 혈압이 높게 나타난다.\
+
+2. 심장박동수가 빨라지는 주요 원인은 부정맥이다.\
+부정맥은 동빈맥, 상심실성 빈맥, 심실성 빈맥 등이 있고 부정맥 원인으로는 각종 심장 질환, 폐질환, 전신질환, 심근의 전기적 현상 이상, 전해질 대사 이상, 약물 중독 등을 꼽을 수 있다.\
+정상인이라도 흥분하거나 과도한 스트레스를 받으면 맥박이 100회 이상으로 증가할 수 있다.\
+
+이를 예방할 수 있는 방법으로는 생활 습관을 바꾸는 것이다. 특히 건강한 식습관과 운동을 꾸준히 하는 습관을 가져야한다.\
+1. 흡연과 음주는 최대한 지양해야 한다.\
+2. 음식은 나트륨 함량이 적게, 채소와 생선을 골고루 섭취해야한다.\
+3. 가능한 한 매일 30분 이상 적절한 운동을 한다.\
+4. 적정 체중과 허리둘레를 유지한다.\
+5. 스트레스를 줄이고, 즐거운 마음으로 생활한다.\
+8. 정기적으로 혈압, 혈당, 콜레스테롤을 측정한다.\
+9. 고혈압, 당뇨병, 이상지질혈증(고지혈증)을 꾸준히 치료한다.\
+10. 뇌졸중, 심근경색증의 응급 증상을 숙지하고 발생 즉시 병원에 간다.\
+
+최종적으로 이 프로젝트를 통해서 생활습관 및 병원에서 검사를 통한 인체유래물을 바탕으로 향후에 고혈압이 걸릴 확률이 높은 대상자를 찾아 미리 예방할 수 있을 것으로 기대된다.
 
 ### 한계점 및 추후 개선 방안
 한계점
