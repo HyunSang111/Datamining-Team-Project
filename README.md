@@ -445,12 +445,22 @@ print(classification_report(y_test, y_pred))
 ```
 ![image](https://user-images.githubusercontent.com/105834310/170260747-4544ae12-9fdb-49ca-b3f7-58f5b84a115f.png)
 ### 결과 & 기대효과
-결과\
+결과
 Decision Tree, Random Forest, KNN, SVM 총 4개의 모델을 통해 생활습관과 인체유래물 정보를 바탕으로 향후 고혈압이 발생하는 환자를 예측해 보았다.
 질병 예측 분야에서는 예측모델에 있어 환자인데 환자로 판별해야 하는 것이 매우 중요하므로 recall(재현율)을 중요하게 바라본다
 따라서 4개의 모델 중 고혈압 환자 recall 값이 가장 높은 Decision Tree를 최종 모델로 선정하여 추가적으로 해석하였다
 
 decision tree 결과 분석
+(1) BP <= 125.5 HEIGHT <=150.5  WEIGHT <= 58.5  ALT <= 20.0  AST <= 25.0
+
+(2) SBP > 125.5 PULSE <= 63.151 TCHL > 154.5 PULSE > 60.029 HBA1C > 5.852
+
+(3) SBP > 125.5 PULSE > 63.151 CREATININE > 0.999 AGE > 60.5 ALT >13.5  GLU > 107.344 HDL > 32  HBA1C > 6.084  FMFHT > 0.5  TG > 67.5
+
+(4) SBP > 125.5 PULSE > 63.151 CREATININE > 0.999 AGE > 60.5 TG > 193.16 PULSE > 71.633 WEIGHT > 51
+
+(1)번의 경우를 제외하고 나머지(2), (3), (4)의 경우는 수축기 혈압이 125.5보다 높은것을 알 수 있다
+특히 가장 많은 샘플 결과인 (3)은 수축기 혈압 변수 말고 다른 변수들은 정상에 가까운데 이는 FMFHT 가족력 즉 아버지가 고혈압일 경우 유전일 확률이 높은것으로 
 
 고혈압을 결정짓는 가장 영향력 있는 변수 SBP(수축기 혈압)과, PULSE(맥박)이다
 
