@@ -251,19 +251,21 @@ plt.xlabel('Predicted Class')
 plt.ylabel('Actual Class')
 print(classification_report(y_test, y_test_hat))
 ```
-![image](https://user-images.githubusercontent.com/105834310/169695120-6f7956c1-c237-4cde-9ad3-76330d4472a9.png)
+![image](https://user-images.githubusercontent.com/105834310/170264455-53484905-01c8-4412-a6c2-ee78111bfba7.png)
 ```python
 from sklearn import tree
 import matplotlib.pyplot as plt
 tree.plot_tree(clf1)
 ```
+![image](https://user-images.githubusercontent.com/105834310/170264662-7c7abbf6-64ab-46f4-b773-7b67a93b9c85.png)
+```python
 f_i=pd.Series(clf.feature_importances_, index=X_train.columns)
 f_i.sort_values(ascending=False)
 import matplotlib.pyplot as plt
 f_i.sort_values().plot(kind='barh',figsize=(10,6))
 plt.show()
 ```
-![image](https://user-images.githubusercontent.com/105834310/170259603-d02011b8-eb0e-42cb-a1c2-67140e146ed9.png)
+![image](https://user-images.githubusercontent.com/105834310/170264511-269189df-d938-40aa-8634-6fe60789ca53.png)
 #### Random Forest
 ```python
 from sklearn.ensemble import RandomForestClassifier
